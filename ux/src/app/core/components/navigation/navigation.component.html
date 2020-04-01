@@ -1,0 +1,31 @@
+<!--app-navigation-bar (click)="navigationSidenav.toggle()"-->
+<app-navigation-bar>
+</app-navigation-bar>
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #navigationSidenav class="sidenav"
+			fixedInViewport
+			mode="side"
+      role="navigation"
+      mode="over"
+      opened="false"
+			fixedTopGap="64"
+			autoFocus="false">
+
+    <span class="toolbar-title"> {{ APP_TOOLBAR_TITLE }} </span>
+
+    <mat-nav-list>
+      <a mat-list-item href="#">Link 1</a>
+      <a mat-list-item href="#">Link 2</a>
+      <a mat-list-item href="#">Link 3</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- Add Content Here -->
+		<router-outlet></router-outlet>
+
+ 	</mat-sidenav-content>
+
+</mat-sidenav-container>
+

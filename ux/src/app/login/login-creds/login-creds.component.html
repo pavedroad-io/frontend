@@ -1,0 +1,33 @@
+<div>
+	<img src="https://www.pavedroad.io/wp-content/uploads/2020/02/pavedroad_blue_418x66.png"
+	style="display:block; margin-top: 25px; margin-left:auto; margin-right: auto;">
+</div>
+<div class="login-wrapper" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>GitHub log in</mat-card-title>
+    </mat-card-header>
+
+    <form>
+	    <mat-card-content>
+	       <mat-form-field apperance="fill" id="userName">
+					 <mat-label>Enter your GitHub user name</mat-label>
+ 	         <input name="username" [(ngModel)]="username" matInput placeholder="Username">
+ 	       </mat-form-field>
+
+				 <div style="margin-top: 10px;">
+				<mat-form-field appearance="fill">
+ 		   		<mat-label>Enter your password</mat-label>
+  	   		<input name="password" [(ngModel)]="password" matInput [type]="hide ? 'password' : 'text'">
+    			<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+						<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+ 		   		</button>
+  		</mat-form-field>
+				 </div>
+
+      </mat-card-content>
+      <button (click)="login()" mat-stroked-button color="accent" class="btn-block">Log in</button>
+    </form>
+  </mat-card>
+
+</div>
