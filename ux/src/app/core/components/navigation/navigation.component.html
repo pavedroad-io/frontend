@@ -1,0 +1,108 @@
+<app-navigation-bar>
+</app-navigation-bar>
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #navigationSidenav class="sidenav"
+			fixedInViewport
+			mode="side"
+      role="navigation"
+      mode="over"
+      opened="false"
+			fixedTopGap="64"
+			autoFocus="false">
+
+    <mat-nav-list>
+			<div style="padding: 15px; : display: inline-block;">
+				<span class="mdc-typography--headline1">
+					Services
+				</span>
+
+				<span style="float: right;">
+					<button mat-flat-button
+					color="primary"
+					aria-label="New Service">
+ 		 			<mat-icon>add_circle</mat-icon>
+					New
+				</button>
+			</span>
+			</div>
+
+			<a mat-list-item>
+			<button mat-icon-button [matMenuTriggerFor]="develop"
+				aria-label="Develop menu">
+  			<mat-icon>more_vert</mat-icon>
+			Develop
+			</button>
+			<mat-menu #develop="matMenu">
+				<ng-container 
+					*ngFor="let item of developmentMenuItems">
+			  <button mat-menu-item>
+					<mat-icon>{{ item.icon }}</mat-icon>
+					<span>{{ item.title }}</span>
+			  </button>
+				</ng-container>
+			</mat-menu>
+			</a>
+
+			<a mat-list-item>
+			<button mat-icon-button [matMenuTriggerFor]="tools"
+				aria-label="Tool network menu">
+  			<mat-icon>more_vert</mat-icon>
+			Tool network
+			</button>
+			<mat-menu #tools="matMenu">
+				<ng-container 
+					*ngFor="let item of toolNetworkMenuItems">
+			  <button mat-menu-item>
+					<mat-icon>{{ item.icon }}</mat-icon>
+					<span>{{ item.title }}</span>
+			  </button>
+				</ng-container>
+			</mat-menu>
+			</a>
+
+      <a mat-list-item>
+			<button mat-icon-button [matMenuTriggerFor]="deploy"
+				aria-label="Deployment menu">
+  			<mat-icon>more_vert</mat-icon>
+				Deploy
+			</button>
+			<mat-menu #deploy="matMenu">
+				<ng-container 
+					*ngFor="let item of deploymentMenuItems">
+			  <button mat-menu-item>
+					<mat-icon>{{ item.icon }}</mat-icon>
+					<span>{{ item.title }}</span>
+			  </button>
+				</ng-container>
+			</mat-menu>
+			</a>
+
+      <a mat-list-item>
+			<button mat-icon-button [matMenuTriggerFor]="operate"
+				aria-label="Opearation menu">
+  			<mat-icon>more_vert</mat-icon>
+				Operate
+			</button>
+			<mat-menu #operate="matMenu">
+				<ng-container 
+					*ngFor="let item of operationsMenuItems">
+			  <button mat-menu-item>
+					<mat-icon>{{ item.icon }}</mat-icon>
+					<span>{{ item.title }}</span>
+			  </button>
+				</ng-container>
+			</mat-menu>
+			</a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content style="margin-top: 64px;">
+    <!-- Add Content Here -->
+		<router-outlet></router-outlet>
+
+ 	</mat-sidenav-content>
+
+</mat-sidenav-container>
+
