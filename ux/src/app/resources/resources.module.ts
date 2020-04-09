@@ -5,6 +5,7 @@ import { MaterialModule } from '../share/material/material.modules';
 import { LayoutModule } from '@angular/cdk/layout';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { ServiceListService } from './services/service-list.service';
 
@@ -25,7 +26,8 @@ import { ServiceFilterPipe } from './components/new-service-wizard/filter-servic
 		ResourcesRoutingModule,
 		HttpClientModule,
 		ReactiveFormsModule,
-		FormsModule
+		FormsModule,
+		MaterialModule
 	],
 	exports: [
 		MaterialModule,

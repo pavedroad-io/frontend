@@ -1,44 +1,130 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="serviceFG">
-
+	<mat-step [stepControl]="serviceFG">
     <form [formGroup]="serviceFG">
-      
-      <ng-template matStepLabel>Select the type of service to create</ng-template>
+  		<ng-template matStepLabel>Select the type of service to create</ng-template>
+      <mat-card style="width: 25%;" class="result">
+        <mat-card-content>
 
-      <mat-form-field>
-        <mat-label>Pick a name for the service</mat-label>
-        <input matInput type="text" placeholder="newservice" value="">
-        <mat-hint>Use lowercase letters and 0-9</mat-hint>
-      </mat-form-field>
-      <br/>
-      <br/>
+        <mat-form-field>
+          <mat-label>Pick a name for the service</mat-label>
+          <input matInput type="text" placeholder="newservice" value="">
+          <mat-hint>Use lowercase letters and 0-9</mat-hint>
+        </mat-form-field>
+        <br/>
+        <br/>
 
+        <mat-form-field>
+        <mat-label>Select the type of service</mat-label>
+          <mat-select [(value)]="selectedServiceType">
+            <mat-option *ngFor="let type of serviceTypes"
+              [value]="type.value">
+             {{ type.displayName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br/>
+        <br/>
+
+        <mat-form-field>
+        <mat-label>Select the template</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let tpl of services | serviceFilter: selectedServiceType : 'type'" 
+              [value]="tpl.key">
+             {{tpl.description}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br/>
+        <br/>
+
+		  	<section>
+          <mat-form-field>
+          <mat-label>API top level domain</mat-label>
+          <input matInput formControlName="firstCtrl"
+					   placeholder="api.yourco.com"
+       	     required>
+          </mat-form-field>
+	  		</section>
+
+	  		<section>
+         <mat-form-field>
+         <mat-label>Scheduler</mat-label>
+         <input [(value)]="scheduler" matInput formControlName="firstCtrl"
+					   placeholder="custom scheduler"
+       	     disabled>
+         </mat-form-field>
+	       </section>
+
+			   <section>
+           <mat-form-field fxFlex="100" fxFill style="display: flex;">
+           <mat-label>Service description</mat-label>
+           <textarea rows="4" cols="100" matInput
+  		  	   placeholder="Description of this service for your documentation"
+     	       required style="width: 400px;">
+				   </textarea>
+           </mat-form-field>
+			    </section>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+       </mat-card-content>
+       </mat-card>
+    </form>
+  </mat-step>
+
+
+  <mat-step [stepControl]="orgFG">
+    <form [formGroup]="orgFG">
+      <ng-template matStepLabel>Organization</ng-template>
+
+      <mat-card style="width: 30%;" class="result">
+        <mat-card-content>
+        <h2 class="example-h2">Organization setup</h2>
+
+        <section class="example-section">
       <mat-form-field>
-      <mat-label>Select the type of service</mat-label>
-        <mat-select [(value)]="selectedServiceType">
-          <mat-option *ngFor="let type of serviceTypes"
+      <mat-label>Select GitHub organization or user</mat-label>
+        <mat-select [(value)]="selectedOrg">
+          <mat-option *ngFor="let type of orgs"
             [value]="type.value">
            {{ type.displayName }}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <br/>
-      <br/>
+        </section>
+        <h2 class="example-h2">Support information</h2>
+				<section>
 
-      <mat-form-field>
-      <mat-label>Select the template</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let tpl of services | serviceFilter: selectedServiceType : 'type'" 
-            [value]="tpl.key">
-           {{tpl.description}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <br/>
-      <br/>
+      	 <mat-form-field>
+       	   <mat-label>Name</mat-label>
+       	   <input matInput formControlName="secondCtrl"
+					   placeholder="Support porson or role to contact"
+       	     required>
+      	 </mat-form-field>
 
-      <mat-card style="width: 30%;" class="result">
-        <mat-card-content>
+      	 <mat-form-field>
+       	   <mat-label>email</mat-label>
+       	   <input matInput formControlName="secondCtrl"
+					   placeholder="support@yourco.com"
+       	     required>
+      	 </mat-form-field>
+
+      	 <mat-form-field>
+       	   <mat-label>Web address</mat-label>
+       	   <input matInput formControlName="secondCtrl"
+					   placeholder="https://supporto.yourco.com"
+       	     required>
+      	 </mat-form-field>
+
+      	 <mat-form-field>
+       	   <mat-label>Slack</mat-label>
+       	   <input matInput formControlName="secondCtrl"
+					   placeholder="yourco.slack.com"
+       	     required>
+      	 </mat-form-field>
+
+      </section>
         <h2 class="example-h2">Repository options</h2>
 
         <section class="example-section">
@@ -61,29 +147,151 @@
       </mat-card-content>
       </mat-card>
       <br/>
+      <br/>
 
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-
-  </mat-step>
-
-
-  <mat-step [stepControl]="orgFG">
-    <form [formGroup]="orgFG">
-      <ng-template matStepLabel>Organization</ng-template>
-      <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-               required>
-      </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
+
+  <mat-step [stepControl]="dependenciesFG">
+    <form [formGroup]="dependenciesFG">
+      <ng-template matStepLabel>Dependencies</ng-template>
+      <mat-card style="width: 30%;" class="result">
+        <mat-card-content>
+        <h2 class="example-h2">Database</h2>
+        <section class="example-section">
+        <mat-slide-toggle
+           class="example-margin"
+           color="primary"
+           [checked]="fossa" disabled>
+           Cockroach DB
+        </mat-slide-toggle>
+        </section>
+        <br/>
+      </mat-card-content>
+      </mat-card>
+      <br/>
+
+      <mat-card style="width: 30%;" class="result">
+        <mat-card-content>
+        <h2 class="example-h2">Kafka</h2>
+        <section class="example-section">
+        <mat-slide-toggle
+           class="example-margin"
+           color="primary"
+           [checked]="fossa">
+           Kafka event streaming scanning
+        </mat-slide-toggle>
+        </section>
+        <br/>
+      </mat-card-content>
+      </mat-card>
+      <br/>
+
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+		</form>
+  </mat-step>
+
+  <mat-step [stepControl]="integrationsFG">
+    <form [formGroup]="integrationsFG">
+      <ng-template matStepLabel>Integrations</ng-template>
+      <mat-card style="width: 30%;" class="result">
+        <mat-card-content>
+        <h2 class="example-h2">Integrations</h2>
+
+        <section class="example-section">
+        <mat-slide-toggle
+           class="example-margin"
+           color="primary"
+           [checked]="fossa">
+           FOSSA license scanning
+        </mat-slide-toggle>
+        </section>
+        <br/>
+        <section class="example-section">
+        <mat-slide-toggle
+           class="example-margin"
+           color="primary"
+           [checked]="sonarcloud">
+           SonarCloud
+        </mat-slide-toggle>
+        </section>
+      </mat-card-content>
+      </mat-card>
+      <br/>
+
+      <mat-card style="width: 30%;" class="result">
+        <mat-card-content>
+        <h2 class="example-h2">Static code analysis</h2>
+
+        <section class="example-section">
+        <mat-slide-toggle
+           class="example-margin"
+           color="primary"
+           [checked]="fossa">
+           Go lint
+        </mat-slide-toggle>
+        </section>
+
+        <section class="example-section">
+        <mat-slide-toggle
+           class="example-margin"
+           color="primary"
+           [checked]="sonarcloud">
+           Go vet
+        </mat-slide-toggle>
+        </section>
+
+        <section class="example-section">
+        <mat-slide-toggle
+           class="example-margin"
+           color="primary"
+           [checked]="sonarcloud">
+           Go security (go-sec)
+        </mat-slide-toggle>
+        </section>
+
+
+        <section class="example-section">
+        <mat-slide-toggle
+           class="example-margin"
+           color="primary"
+           [checked]="sonarcloud">
+           Go portability error checking (errcheck)
+        </mat-slide-toggle>
+        </section>
+      <br/>
+      <br/>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+      </mat-card-content>
+      </mat-card>
+      <br/>
+		</form>
+  </mat-step>
+
+  <mat-step [stepControl]="documentFG">
+  <ng-template matStepLabel>document design</ng-template>
+
+	  <mat-grid-list cols="2">
+ 	  	<mat-grid-tile>Tile 1 </mat-grid-tile>
+ 	  	<mat-grid-tile>Tile 2 </mat-grid-tile>
+ 	  </mat-grid-list>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     <p>You are now done.</p>

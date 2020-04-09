@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceListService, IserviceResponse } from  '../../services/service-list.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-new-service-wizard',
@@ -13,18 +14,36 @@ export class NewServiceWizardComponent implements OnInit {
 
   serviceFG: FormGroup;
   orgFG: FormGroup;
+  dependenciesFG: FormGroup;
+  integrationsFG: FormGroup;
+  documentFG: FormGroup;
 
-	selectedServiceType: string;
-	//<mat-option *ngFor="let tpl of services"
 	OSS = true;
 	createNewRepo = true;
+	fossa = true;
+	sonarcloud = true;
+
+	tld: string;
+	scheduler?: string;
 
 	services: IserviceResponse[];
+
+	// TODO: move to services
+	selectedServiceType: string;
 	serviceTypes: any[] = [
 		{ value: "ms", displayName: "Microserivces", icon: "" },
 		{ value: "faas", displayName: "Function", icon: "" },
 		{ value: "crd", displayName: "CRD", icon: "" }
 	];
+
+	selectedOrg: string;
+	orgs: any[] = [
+		{ value: "pr", type: "org", displayName: "pavedroad-io", icon: "" },
+		{ value: "ad", type: "org", displayName: "acme-demo", icon: "" },
+		{ value: "js", type: "user", displayName: "jscharber", icon: "" },
+	]
+
+	// TODO: move to service
 
 	constructor( private service: ServiceListService,
 							 private _formBuilder: FormBuilder) { 
@@ -50,8 +69,21 @@ export class NewServiceWizardComponent implements OnInit {
 	  this.serviceFG = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
+
     this.orgFG = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
+    });
+
+    this.dependenciesFG = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required]
+    });
+
+    this.integrationsFG = this._formBuilder.group({
+      forthCtrl: ['', Validators.required]
+    });
+
+    this.documentFG = this._formBuilder.group({
+      fifthCtrl: ['', Validators.required]
     });
 
 		/*
