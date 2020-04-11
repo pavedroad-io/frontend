@@ -6,3 +6,36 @@
   height: 100%;
   display: flex;
 }
+
+.field-placeholder {
+  background: #ccc;
+  border: dotted 3px #999;
+  min-height: 60px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+fieldset {
+	margin-top: 150px;
+  height: 100%;
+	width: 100%;
+}
+
+
+mat-list {
+	margin-top: 150px;
+	flex-grow: 1;
+}
+mat-list-item {
+  border: solid 1px;
+	margin: 5px;
+}
+
+.mat-list .mat-list-item.left .mat-list-item-content{
+      justify-content: flex-start;
+}
+
+.left {
+	justify-content: center;
+	align-content: left;
+	align-items: flex-start;
+}

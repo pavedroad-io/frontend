@@ -6,6 +6,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
+import { DragDropModule} from '@angular/cdk/drag-drop';
 
 import { ServiceListService } from './services/service-list.service';
 
@@ -27,7 +29,9 @@ import { ServiceFilterPipe } from './components/new-service-wizard/filter-servic
 		HttpClientModule,
 		ReactiveFormsModule,
 		FormsModule,
-		MaterialModule
+		MaterialModule,
+		DragDropModule,
+		MatListModule
 	],
 	exports: [
 		MaterialModule,

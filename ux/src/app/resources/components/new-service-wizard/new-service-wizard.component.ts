@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ServiceListService, IserviceResponse } from  '../../services/service-list.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
+import { CdkDragStart, CdkDragMove, CdkDragDrop, moveItemInArray, copyArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-new-service-wizard',
@@ -10,6 +12,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
   styleUrls: ['./new-service-wizard.component.css']
 })
 export class NewServiceWizardComponent implements OnInit {
+	@ViewChild(MatListModule, { read: ElementRef }) child: ElementRef;
+
   isLinear = false;
 
   serviceFG: FormGroup;
@@ -43,6 +47,54 @@ export class NewServiceWizardComponent implements OnInit {
 		{ value: "js", type: "user", displayName: "jscharber", icon: "" },
 	]
 
+	// valid-data-types
+	//
+	types = [
+    'string',
+    'number',
+    'integer',
+		'boolean',
+		'time',
+		'[]array',
+		'{}object',
+		'time',
+		'uuid'
+  ]	
+	
+ _currentIndex;
+ _currentField;
+
+	fields: string[] = [];
+
+	/*
+	dragStart(event: CdkDragStart) {
+		// Get index of dragged type
+		this._currentIndex = this.types.indexOf(event.source.data); 
+		// Store HTML field
+		this._currentField = this.child.nativeElement.children[this._currentIndex];
+  }
+
+  moved(event: CdkDragMove) {
+    // Check if stored HTML field is as same as current field
+    if (this.child.nativeElement.children[this._currentIndex] !== this._currentField) {
+      // Replace current field, basically replaces placeholder with old HTML content
+      this.child.nativeElement.replaceChild(this._currentField, this.child.nativeElement.children[this._currentIndex]);
+    }
+  }
+	 */
+
+  itemDropped(event: CdkDragDrop<any[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(this.fields, event.previousIndex, event.currentIndex);
+    } else {
+      this.addField(event.item.data, event.currentIndex);
+    }
+  }
+
+  addField(fieldType: string, index: number) {
+    this.fields.splice(index, 0, fieldType)
+  }
+
 	// TODO: move to service
 
 	constructor( private service: ServiceListService,
@@ -61,6 +113,10 @@ export class NewServiceWizardComponent implements OnInit {
 
 		return data;
 	}
+
+	trackByIndex(index, item) {
+    return index; // or item.id
+  }
 
 	ngOnInit(): void {
 		this.services = this.service.getServices()

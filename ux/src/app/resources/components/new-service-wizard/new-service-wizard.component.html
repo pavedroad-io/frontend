@@ -1,7 +1,7 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
 	<mat-step [stepControl]="serviceFG">
     <form [formGroup]="serviceFG">
-  		<ng-template matStepLabel>Select the type of service to create</ng-template>
+			<ng-template matStepLabel>Select the type of service to create</ng-template>
       <mat-card style="width: 25%;" class="result">
         <mat-card-content>
 
@@ -37,33 +37,33 @@
         <br/>
         <br/>
 
-		  	<section>
+				<section>
           <mat-form-field>
           <mat-label>API top level domain</mat-label>
           <input matInput formControlName="firstCtrl"
-					   placeholder="api.yourco.com"
-       	     required>
+						 placeholder="api.yourco.com"
+						 required>
           </mat-form-field>
-	  		</section>
+				</section>
 
-	  		<section>
+				<section>
          <mat-form-field>
          <mat-label>Scheduler</mat-label>
          <input [(value)]="scheduler" matInput formControlName="firstCtrl"
-					   placeholder="custom scheduler"
-       	     disabled>
+						 placeholder="custom scheduler"
+						 disabled>
          </mat-form-field>
-	       </section>
+				 </section>
 
-			   <section>
+				 <section>
            <mat-form-field fxFlex="100" fxFill style="display: flex;">
            <mat-label>Service description</mat-label>
            <textarea rows="4" cols="100" matInput
-  		  	   placeholder="Description of this service for your documentation"
-     	       required style="width: 400px;">
-				   </textarea>
+						 placeholder="Description of this service for your documentation"
+						 required style="width: 400px;">
+					 </textarea>
            </mat-form-field>
-			    </section>
+					</section>
 
       <div>
         <button mat-button matStepperNext>Next</button>
@@ -96,33 +96,33 @@
         <h2 class="example-h2">Support information</h2>
 				<section>
 
-      	 <mat-form-field>
-       	   <mat-label>Name</mat-label>
-       	   <input matInput formControlName="secondCtrl"
-					   placeholder="Support porson or role to contact"
-       	     required>
-      	 </mat-form-field>
+				 <mat-form-field>
+					 <mat-label>Name</mat-label>
+					 <input matInput formControlName="secondCtrl"
+						 placeholder="Support porson or role to contact"
+						 required>
+				 </mat-form-field>
 
-      	 <mat-form-field>
-       	   <mat-label>email</mat-label>
-       	   <input matInput formControlName="secondCtrl"
-					   placeholder="support@yourco.com"
-       	     required>
-      	 </mat-form-field>
+				 <mat-form-field>
+					 <mat-label>email</mat-label>
+					 <input matInput formControlName="secondCtrl"
+						 placeholder="support@yourco.com"
+						 required>
+				 </mat-form-field>
 
-      	 <mat-form-field>
-       	   <mat-label>Web address</mat-label>
-       	   <input matInput formControlName="secondCtrl"
-					   placeholder="https://supporto.yourco.com"
-       	     required>
-      	 </mat-form-field>
+				 <mat-form-field>
+					 <mat-label>Web address</mat-label>
+					 <input matInput formControlName="secondCtrl"
+						 placeholder="https://supporto.yourco.com"
+						 required>
+				 </mat-form-field>
 
-      	 <mat-form-field>
-       	   <mat-label>Slack</mat-label>
-       	   <input matInput formControlName="secondCtrl"
-					   placeholder="yourco.slack.com"
-       	     required>
-      	 </mat-form-field>
+				 <mat-form-field>
+					 <mat-label>Slack</mat-label>
+					 <input matInput formControlName="secondCtrl"
+						 placeholder="yourco.slack.com"
+						 required>
+				 </mat-form-field>
 
       </section>
         <h2 class="example-h2">Repository options</h2>
@@ -281,11 +281,55 @@
 
   <mat-step [stepControl]="documentFG">
   <ng-template matStepLabel>document design</ng-template>
+		<div>
+			<h2>table name</h2>
+		</div>
 
-	  <mat-grid-list cols="2">
- 	  	<mat-grid-tile>Tile 1 </mat-grid-tile>
- 	  	<mat-grid-tile>Tile 2 </mat-grid-tile>
- 	  </mat-grid-list>
+		<mat-grid-list cols="4" class="left">
+			<mat-grid-tile rowspan="2">
+				<mat-grid-tile-header [style.background]="'#3f51b5'">
+						Variable types
+				</mat-grid-tile-header>
+
+				<mat-chip-list cdkDropList cdkDropListConnectedTo="drop-list"
+					role="list"
+					class="mat-chip-list"
+					style="margin-top: 150px; justify-content: flex-start;">
+					
+					<mat-chip class="left" cdkDrag *ngFor="let type of types" [cdkDragData]="type">
+            {{ type }}
+		      </mat-chip>
+
+				</mat-chip-list>
+
+			</mat-grid-tile>
+
+			<mat-grid-tile colspan="3" rowspan="2">
+				<mat-grid-tile-header style="background: #3f51b5;">
+					Document columns
+				</mat-grid-tile-header>
+
+				<fieldset cdkDropList id="drop-list"
+         (cdkDropListDropped)="itemDropped($event)">
+
+          <legend>Fields</legend>
+          <mat-expansion-panel
+          *ngFor="let field of fields; let fieldIndex = index; trackBy: trackByIndex"
+           cdkDrag>
+           <div *cdkDragPlaceholder class="field-placeholder"></div>
+
+           <mat-expansion-panel-header cdkDragHandle>
+             <mat-panel-title>{{ field }}</mat-panel-title>
+             <mat-panel-description>
+               {{ field }}
+             </mat-panel-description>
+           </mat-expansion-panel-header>
+           Dummy info here
+         </mat-expansion-panel>
+       </fieldset>
+			</mat-grid-tile>
+
+		</mat-grid-list>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Next</button>
