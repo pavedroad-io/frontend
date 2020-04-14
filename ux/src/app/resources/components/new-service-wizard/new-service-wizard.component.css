@@ -15,7 +15,7 @@
 }
 
 fieldset {
-	margin-top: 150px;
+	margin-top: 50px;
   height: 100%;
 	width: 100%;
 }
@@ -25,17 +25,16 @@ mat-list {
 	margin-top: 150px;
 	flex-grow: 1;
 }
+
 mat-list-item {
   border: solid 1px;
 	margin: 5px;
 }
 
-.mat-list .mat-list-item.left .mat-list-item-content{
-      justify-content: flex-start;
+:host >>> .mat-figure{
+  align-items: start !important;
 }
 
-.left {
-	justify-content: center;
-	align-content: left;
-	align-items: flex-start;
+.drop-title {
+	margin-top: 60px;
 }

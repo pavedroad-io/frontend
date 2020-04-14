@@ -291,16 +291,16 @@
 						Variable types
 				</mat-grid-tile-header>
 
-				<mat-chip-list cdkDropList cdkDropListConnectedTo="drop-list"
+				<app-variable-types class="drop-title"></app-variable-types>
+				<!--mat-chip-list cdkDropList cdkDropListConnectedTo="drop-list"
 					role="list"
-					class="mat-chip-list"
-					style="margin-top: 150px; justify-content: flex-start;">
+					class="drop-title">
 					
 					<mat-chip class="left" cdkDrag *ngFor="let type of types" [cdkDragData]="type">
             {{ type }}
 		      </mat-chip>
 
-				</mat-chip-list>
+				</mat-chip-list-->
 
 			</mat-grid-tile>
 
@@ -313,6 +313,7 @@
          (cdkDropListDropped)="itemDropped($event)">
 
           <legend>Fields</legend>
+					<app-table></app-table>
           <mat-expansion-panel
           *ngFor="let field of fields; let fieldIndex = index; trackBy: trackByIndex"
            cdkDrag>

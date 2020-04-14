@@ -9,17 +9,28 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { DragDropModule} from '@angular/cdk/drag-drop';
 
+// Services
 import { ServiceListService } from './services/service-list.service';
+import { VariableTypesService } from './services/variable-types.service';
 
+// Pipes
+import { ServiceFilterPipe } from './components/new-service-wizard/filter-services.pipe';
+
+// Components
 import { ResourcesRoutingModule } from './resources-routing.module';
 import { NewServiceWizardComponent } from './components/new-service-wizard/new-service-wizard.component';
-import { ServiceFilterPipe } from './components/new-service-wizard/filter-services.pipe';
+import { VariableTypesComponent } from './components/variable-types/variable-types.component';
+import { TableComponent } from './components/table/table.component';
+import { ColumnsComponent } from './components/columns/columns.component';
 
 
 @NgModule({
 	declarations: [
 		NewServiceWizardComponent,
-		ServiceFilterPipe
+		ServiceFilterPipe,
+		VariableTypesComponent,
+		TableComponent,
+		ColumnsComponent
 	],
   imports: [
 		CommonModule,
@@ -38,7 +49,8 @@ import { ServiceFilterPipe } from './components/new-service-wizard/filter-servic
 		ReactiveFormsModule
 	],
 	providers: [
-		ServiceListService
+		ServiceListService,
+		VariableTypesService
 	]
 })
 export class ResourcesModule { }

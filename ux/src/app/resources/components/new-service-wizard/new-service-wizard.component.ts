@@ -1,9 +1,12 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ServiceListService, IserviceResponse } from  '../../services/service-list.service';
+import { VariableTypesComponent } from '../variable-types/variable-types.component';
+import { TableComponent, Itable } from '../table/table.component';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 import { CdkDragStart, CdkDragMove, CdkDragDrop, moveItemInArray, copyArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -32,8 +35,9 @@ export class NewServiceWizardComponent implements OnInit {
 
 	services: IserviceResponse[];
 
-	// TODO: move to services
 	selectedServiceType: string;
+
+	// TODO: move to service
 	serviceTypes: any[] = [
 		{ value: "ms", displayName: "Microserivces", icon: "" },
 		{ value: "faas", displayName: "Function", icon: "" },
@@ -66,36 +70,18 @@ export class NewServiceWizardComponent implements OnInit {
 
 	fields: string[] = [];
 
-	/*
-	dragStart(event: CdkDragStart) {
-		// Get index of dragged type
-		this._currentIndex = this.types.indexOf(event.source.data); 
-		// Store HTML field
-		this._currentField = this.child.nativeElement.children[this._currentIndex];
-  }
-
-  moved(event: CdkDragMove) {
-    // Check if stored HTML field is as same as current field
-    if (this.child.nativeElement.children[this._currentIndex] !== this._currentField) {
-      // Replace current field, basically replaces placeholder with old HTML content
-      this.child.nativeElement.replaceChild(this._currentField, this.child.nativeElement.children[this._currentIndex]);
-    }
-  }
-	 */
-
   itemDropped(event: CdkDragDrop<any[]>) {
+		console.log(event);
     if (event.previousContainer === event.container) {
       moveItemInArray(this.fields, event.previousIndex, event.currentIndex);
     } else {
-      this.addField(event.item.data, event.currentIndex);
+      this.addField(event.item.data.key, event.currentIndex);
     }
   }
 
   addField(fieldType: string, index: number) {
     this.fields.splice(index, 0, fieldType)
   }
-
-	// TODO: move to service
 
 	constructor( private service: ServiceListService,
 							 private _formBuilder: FormBuilder) { 
