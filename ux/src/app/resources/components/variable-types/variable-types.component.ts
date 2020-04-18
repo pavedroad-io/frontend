@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { VariableTypesService, IvariableTypes, IvariableTypesConfig } from '../../services/variable-types.service'; 
 
 
@@ -10,12 +10,12 @@ import { VariableTypesService, IvariableTypes, IvariableTypesConfig } from '../.
 export class VariableTypesComponent implements OnInit {
 	config: IvariableTypesConfig;
 	types: IvariableTypes[];
+
 	constructor( private typesService: VariableTypesService) {
 	}
 
   ngOnInit(): void {
 		this.types = this.typesService.getTypes();
-		console.log(this.types);
   }
 
 }

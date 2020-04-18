@@ -7,7 +7,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
-import { DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 // Services
 import { ServiceListService } from './services/service-list.service';
@@ -22,6 +23,7 @@ import { NewServiceWizardComponent } from './components/new-service-wizard/new-s
 import { VariableTypesComponent } from './components/variable-types/variable-types.component';
 import { TableComponent } from './components/table/table.component';
 import { ColumnsComponent } from './components/columns/columns.component';
+import { NewDocumentWizardComponent } from './components/new-document-wizard/new-document-wizard.component';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { ColumnsComponent } from './components/columns/columns.component';
 		ServiceFilterPipe,
 		VariableTypesComponent,
 		TableComponent,
-		ColumnsComponent
+		ColumnsComponent,
+		NewDocumentWizardComponent
 	],
   imports: [
 		CommonModule,
@@ -42,7 +45,8 @@ import { ColumnsComponent } from './components/columns/columns.component';
 		FormsModule,
 		MaterialModule,
 		DragDropModule,
-		MatListModule
+		MatListModule,
+		ScrollingModule
 	],
 	exports: [
 		MaterialModule,

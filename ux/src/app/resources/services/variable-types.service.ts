@@ -33,8 +33,8 @@ export class VariableTypesService {
 		{ key: "boolean", icon: "", description: "true or false", toolTip: "true or false", enable: true },
 		{ key: "time", icon: "", description: "Date / Time type", toolTip: "Date / Time type", enable: true },
 		{ key: "uuid", icon: "", description: "Universally unique identifier V4", toolTip: "Universally unique identifier", enable: true },
-		{ key: "object", icon: "", description: "Create a sub-object", toolTip: "Create a sub-object", enable: true },
-		{ key: "array", icon: "", description: "An array of types or objects", toolTip: "An array of types or objects", enable: false }
+		{ key: "{} object", icon: "", description: "Create a sub-object", toolTip: "Create a sub-object", enable: true },
+		{ key: "[] array", icon: "", description: "An array of types or objects", toolTip: "An array of types or objects", enable: false }
 	];
 
 	constructor() { 

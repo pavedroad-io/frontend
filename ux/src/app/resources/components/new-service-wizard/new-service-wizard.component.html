@@ -7,7 +7,13 @@
 
         <mat-form-field>
           <mat-label>Pick a name for the service</mat-label>
-          <input matInput type="text" placeholder="newservice" value="">
+          <input matInput 
+						type="text" 
+						placeholder="newservice"
+						name="serviceName"
+						[(ngModel)]="serviceName"
+						(ngModelChange)="serviceNameChanged($event)"
+						[ngModelOptions]="{standalone: true}">
           <mat-hint>Use lowercase letters and 0-9</mat-hint>
         </mat-form-field>
         <br/>
@@ -280,57 +286,8 @@
   </mat-step>
 
   <mat-step [stepControl]="documentFG">
-  <ng-template matStepLabel>document design</ng-template>
-		<div>
-			<h2>table name</h2>
-		</div>
-
-		<mat-grid-list cols="4" class="left">
-			<mat-grid-tile rowspan="2">
-				<mat-grid-tile-header [style.background]="'#3f51b5'">
-						Variable types
-				</mat-grid-tile-header>
-
-				<app-variable-types class="drop-title"></app-variable-types>
-				<!--mat-chip-list cdkDropList cdkDropListConnectedTo="drop-list"
-					role="list"
-					class="drop-title">
-					
-					<mat-chip class="left" cdkDrag *ngFor="let type of types" [cdkDragData]="type">
-            {{ type }}
-		      </mat-chip>
-
-				</mat-chip-list-->
-
-			</mat-grid-tile>
-
-			<mat-grid-tile colspan="3" rowspan="2">
-				<mat-grid-tile-header style="background: #3f51b5;">
-					Document columns
-				</mat-grid-tile-header>
-
-				<fieldset cdkDropList id="drop-list"
-         (cdkDropListDropped)="itemDropped($event)">
-
-          <legend>Fields</legend>
-					<app-table></app-table>
-          <mat-expansion-panel
-          *ngFor="let field of fields; let fieldIndex = index; trackBy: trackByIndex"
-           cdkDrag>
-           <div *cdkDragPlaceholder class="field-placeholder"></div>
-
-           <mat-expansion-panel-header cdkDragHandle>
-             <mat-panel-title>{{ field }}</mat-panel-title>
-             <mat-panel-description>
-               {{ field }}
-             </mat-panel-description>
-           </mat-expansion-panel-header>
-           Dummy info here
-         </mat-expansion-panel>
-       </fieldset>
-			</mat-grid-tile>
-
-		</mat-grid-list>
+  	<ng-template matStepLabel>Document design</ng-template>
+		<app-new-document-wizard (forward)="forwardDropped($event)"></app-new-document-wizard>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Next</button>
