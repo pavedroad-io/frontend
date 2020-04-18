@@ -7,7 +7,8 @@
 
         <mat-form-field>
           <mat-label>Pick a name for the service</mat-label>
-          <input matInput type="text" placeholder="newservice" value="">
+          <input matInput type="text" placeholder="newservice"
+					[(value)]="serviceName">
           <mat-hint>Use lowercase letters and 0-9</mat-hint>
         </mat-form-field>
         <br/>
@@ -281,7 +282,9 @@
 
   <mat-step [stepControl]="documentFG">
   <ng-template matStepLabel>document design</ng-template>
-		<div>
+	<app-new-document-wizard (forward)="forwardDropped($event)"></app-new-document-wizard>
+
+		<!--div>
 			<h2>table name</h2>
 		</div>
 
@@ -291,17 +294,7 @@
 						Variable types
 				</mat-grid-tile-header>
 
-				<app-variable-types class="drop-title"></app-variable-types>
-				<!--mat-chip-list cdkDropList cdkDropListConnectedTo="drop-list"
-					role="list"
-					class="drop-title">
-					
-					<mat-chip class="left" cdkDrag *ngFor="let type of types" [cdkDragData]="type">
-            {{ type }}
-		      </mat-chip>
-
-				</mat-chip-list-->
-
+				<app-variable-types (forward)="forwardDropped($event)" class="drop-title"></app-variable-types>
 			</mat-grid-tile>
 
 			<mat-grid-tile colspan="3" rowspan="2">
@@ -309,7 +302,7 @@
 					Document columns
 				</mat-grid-tile-header>
 
-				<fieldset cdkDropList id="drop-list"
+				<fieldset cdkDropList
          (cdkDropListDropped)="itemDropped($event)">
 
           <legend>Fields</legend>
@@ -330,7 +323,7 @@
        </fieldset>
 			</mat-grid-tile>
 
-		</mat-grid-list>
+		</mat-grid-list!-->
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button matStepperNext>Next</button>

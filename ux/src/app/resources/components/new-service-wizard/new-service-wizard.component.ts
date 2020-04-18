@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Output, Input } from '@angular/core';
 import { ServiceListService, IserviceResponse } from  '../../services/service-list.service';
 import { VariableTypesComponent } from '../variable-types/variable-types.component';
 import { TableComponent, Itable } from '../table/table.component';
@@ -29,6 +29,7 @@ export class NewServiceWizardComponent implements OnInit {
 	createNewRepo = true;
 	fossa = true;
 	sonarcloud = true;
+	serviceName: string = "";
 
 	tld: string;
 	scheduler?: string;
@@ -51,38 +52,6 @@ export class NewServiceWizardComponent implements OnInit {
 		{ value: "js", type: "user", displayName: "jscharber", icon: "" },
 	]
 
-	// valid-data-types
-	//
-	types = [
-    'string',
-    'number',
-    'integer',
-		'boolean',
-		'time',
-		'[]array',
-		'{}object',
-		'time',
-		'uuid'
-  ]	
-	
- _currentIndex;
- _currentField;
-
-	fields: string[] = [];
-
-  itemDropped(event: CdkDragDrop<any[]>) {
-		console.log(event);
-    if (event.previousContainer === event.container) {
-      moveItemInArray(this.fields, event.previousIndex, event.currentIndex);
-    } else {
-      this.addField(event.item.data.key, event.currentIndex);
-    }
-  }
-
-  addField(fieldType: string, index: number) {
-    this.fields.splice(index, 0, fieldType)
-  }
-
 	constructor( private service: ServiceListService,
 							 private _formBuilder: FormBuilder) { 
 	
@@ -100,9 +69,9 @@ export class NewServiceWizardComponent implements OnInit {
 		return data;
 	}
 
-	trackByIndex(index, item) {
-    return index; // or item.id
-  }
+	forwardDropped(event) {
+		console.log("test", event);
+	}
 
 	ngOnInit(): void {
 		this.services = this.service.getServices()

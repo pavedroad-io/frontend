@@ -1,14 +1,26 @@
-<mat-expansion-panel cdkDrag>
+<mat-expansion-panel [expanded]="true" cdkDrag>
   <div *cdkDragPlaceholder class="field-placeholder"></div>
 
   <mat-expansion-panel-header cdkDragHandle>
     <mat-panel-title>
-			<mat-icon>table_chart</mat-icon>
-		</mat-panel-title>
+		<mat-icon>table_chart</mat-icon>
+	</mat-panel-title>
       <mat-panel-description>
          {{ pTable.name }}
       </mat-panel-description>
    </mat-expansion-panel-header>
-    Rows
+
+	 <div cdkDropList id="table1"
+		(cdkDropListDropped)="childDropped($event)" cdkDrag>
+		<cdk-virtual-scroll-viewport itemSize="70">
+		 <div class="col-viewport"
+			 *cdkVirtualFor="let currentColumn of pTable.columns">
+		 	<app-columns
+				[col]="currentColumn"
+				class="col-viewport">
+			</app-columns>
+		 </div>
+	 </cdk-virtual-scroll-viewport>
+	</div>
 </mat-expansion-panel>
 
