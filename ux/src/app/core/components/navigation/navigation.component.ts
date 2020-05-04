@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -54,9 +55,15 @@ export class NavigationComponent {
 	@ViewChild('navigationSidenav', {static: true})
 	public sidenav: MatSidenav;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
 	toggle() {
 		this.sidenav.toggle();
 	}
+
+	public openNewServiceWizard() {
+		this.toggle();
+		 this.router.navigate(['wizard']);
+	}
+
 }

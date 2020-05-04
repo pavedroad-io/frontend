@@ -1,4 +1,4 @@
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<mat-horizontal-stepper #stepper>
 	<mat-step [stepControl]="serviceFG">
     <form [formGroup]="serviceFG">
 			<ng-template matStepLabel>Select the type of service to create</ng-template>
@@ -192,6 +192,12 @@
            Kafka event streaming scanning
         </mat-slide-toggle>
         </section>
+        <div>
+        <br/>
+					<button mat-raised-button (click)="openKafkaConfig()">
+						advanced configuration
+					</button>
+        </div>
         <br/>
       </mat-card-content>
       </mat-card>

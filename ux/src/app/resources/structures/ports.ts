@@ -1,4 +1,8 @@
 export class Ports {
-	external: Array<string>;
-	internal: Array<string>;
+	id: number;
+	external: string;
+	internal: string;
+
+	constructor() {
+	}
 }

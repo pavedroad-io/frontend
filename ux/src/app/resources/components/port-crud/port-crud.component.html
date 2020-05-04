@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>{{description}}</h2>
+
+<mat-dialog-content>
+
+				<div>
+					<mat-form-field appearance="fill" class="example-full-width">
+			   	 <mat-label>External port</mat-label>
+			   	 <input matInput 
+						placeholder="enter a port number" 
+						[(ngModel)]="port.external">
+				  </mat-form-field>
+
+					<mat-form-field appearance="fill" class="example-full-width">
+			   	 <mat-label>Internal port</mat-label>
+			   	 <input matInput 
+						placeholder="enter a port number" 
+						[(ngModel)]="port.internal">
+				  </mat-form-field>
+				</div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="cancel()">Cancel</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+</mat-dialog-actions>
+

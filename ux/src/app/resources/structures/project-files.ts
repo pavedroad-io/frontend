@@ -3,4 +3,7 @@ export class ProjectFiles {
 	name: string;
 	path: string;
 	src: string;
+
+	constructor() {
+	}
 }
