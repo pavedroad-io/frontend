@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
@@ -24,6 +25,15 @@ import { VariableTypesComponent } from './components/variable-types/variable-typ
 import { TableComponent } from './components/table/table.component';
 import { ColumnsComponent } from './components/columns/columns.component';
 import { NewDocumentWizardComponent } from './components/new-document-wizard/new-document-wizard.component';
+import { KafkaConfigComponent } from './components/kafka-config/kafka-config.component';
+import { CockroachConfigComponent } from './components/cockroach-config/cockroach-config.component';
+import { SoncarCloudConfigComponent } from './components/soncar-cloud-config/soncar-cloud-config.component';
+import { FossaConfigComponent } from './components/fossa-config/fossa-config.component';
+import { ScaConfigComponent } from './components/sca-config/sca-config.component';
+
+// 3rd Party modules
+import { deserialize, JsonProperty } from 'json-typescript-mapper';
+
 
 
 @NgModule({
@@ -33,7 +43,12 @@ import { NewDocumentWizardComponent } from './components/new-document-wizard/new
 		VariableTypesComponent,
 		TableComponent,
 		ColumnsComponent,
-		NewDocumentWizardComponent
+		NewDocumentWizardComponent,
+		KafkaConfigComponent,
+		CockroachConfigComponent,
+		SoncarCloudConfigComponent,
+		FossaConfigComponent,
+		ScaConfigComponent
 	],
   imports: [
 		CommonModule,
@@ -44,9 +59,17 @@ import { NewDocumentWizardComponent } from './components/new-document-wizard/new
 		ReactiveFormsModule,
 		FormsModule,
 		MaterialModule,
+		MatDialogModule,
 		DragDropModule,
 		MatListModule,
 		ScrollingModule
+	],
+	entryComponents: [
+		ScrollingModule,
+		FossaConfigComponent,
+		KafkaConfigComponent,
+		SoncarCloudConfigComponent,
+		CockroachConfigComponent
 	],
 	exports: [
 		MaterialModule,

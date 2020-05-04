@@ -17,10 +17,6 @@ import { CdkDragStart, CdkDragMove, CdkDragDrop, moveItemInArray, copyArrayItem 
 export class NewDocumentWizardComponent implements OnInit {
 	@Input() serviceName: string;
 	@Output() forward = new EventEmitter<any>();
-	// _currentIndex;
-	// _currentField;
-
-	//	fields: string[] = [];
 
   constructor() { }
 

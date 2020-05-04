@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild, Output, Input } from '@angular/core';
 import { ServiceListService, IserviceResponse } from  '../../services/service-list.service';
+import { KafkaConfigComponent } from '../kafka-config/kafka-config.component';
 import { VariableTypesComponent } from '../variable-types/variable-types.component';
 import { TableComponent, Itable } from '../table/table.component';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -7,6 +8,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { CdkDragStart, CdkDragMove, CdkDragDrop, moveItemInArray, copyArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -17,7 +19,7 @@ import { CdkDragStart, CdkDragMove, CdkDragDrop, moveItemInArray, copyArrayItem 
 export class NewServiceWizardComponent implements OnInit {
 	@ViewChild(MatListModule, { read: ElementRef }) child: ElementRef;
 
-  isLinear = false;
+	// isLinear = false;
 
   serviceFG: FormGroup;
   orgFG: FormGroup;
@@ -37,7 +39,7 @@ export class NewServiceWizardComponent implements OnInit {
 	services: IserviceResponse[];
 
 	selectedServiceType: string;
-
+	//
 	// TODO: move to service
 	serviceTypes: any[] = [
 		{ value: "ms", displayName: "Microserivces", icon: "" },
@@ -53,7 +55,9 @@ export class NewServiceWizardComponent implements OnInit {
 	]
 
 	constructor( private service: ServiceListService,
-							 private _formBuilder: FormBuilder) { 
+						 		private _formBuilder: FormBuilder,
+								private dialog: MatDialog	
+	) { 
 	
 	}
 
@@ -75,6 +79,12 @@ export class NewServiceWizardComponent implements OnInit {
 
 	forwardDropped(event) {
 		console.log("test", event);
+	}
+
+	openKafkaConfig() {
+		const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    this.dialog.open(KafkaConfigComponent, dialogConfig);
 	}
 
 	ngOnInit(): void {

@@ -2,13 +2,13 @@ import { deserialize, JsonProperty } from 'json-typescript-mapper';
 import { Columns } from './columns';
 
 export class Table {
-	@JsonProperty('table-name')
+	//@JsonProperty('table-name')
 	tableName: string;
 
-	@JsonProperty('table-type')
+	//@JsonProperty('table-type')
 	tableType: string;
 
-	@JsonProperty('parent-table')
+	//@JsonProperty('parent-table')
 	parentTable: string;
 
 	columns: Array <Columns>;
