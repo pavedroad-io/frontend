@@ -34,9 +34,9 @@ export class TableComponent implements OnInit {
 
   childDropped(event: CdkDragDrop<any[]>) {
 		this.forward.emit(event);
-		console.log("childDroped", event);
+		//console.log("childDroped", event);
     if (event.previousContainer === event.container) {
-		  console.log("moveitem");
+			//console.log("moveitem");
       moveItemInArray(this.fields, event.previousIndex, event.currentIndex);
     } else {
       this.addColumn(event.item.data, event.currentIndex);
@@ -44,7 +44,7 @@ export class TableComponent implements OnInit {
   }
 
   addField(fieldType: string, index: number) {
-		console.log(fieldType);
+		//console.log(fieldType);
     this.fields.splice(index, 0, fieldType)
   }
 
@@ -61,7 +61,7 @@ export class TableComponent implements OnInit {
 		items.push(newCol);;
 		//		this.pTable.columns.push(newCol);
 		this.pTable.columns = items;	
-		console.log(this.pTable.columns);
+		//console.log(this.pTable.columns);
 	}
 
   ngOnInit(): void {
@@ -106,7 +106,7 @@ export class TableComponent implements OnInit {
 		// TODO: add check function to make sure it is a valid type
 		// Look it up first and maybe set boundary limits
 		this.pTable.columns.push(created,updated);
-		console.log(this.pTable);
+		//console.log(this.pTable);
 	}
 
 }

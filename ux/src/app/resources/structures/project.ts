@@ -27,7 +27,7 @@ export class Project {
 		this.license = "Apache2";
 		this.schedulerName = "httpScheduler";
 		this.maintainer = new Maintainer();
-		this.projectFiles = new Array(1);
+		this.projectFiles = new Array(0);
 		this.integrations = new Integrations(['fossa','sonarcloud']);
 		this.kubernetes = new KubeConfig();
 		this.dependencies = new Dependencies();

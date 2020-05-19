@@ -13,7 +13,6 @@ export class Integrations {
 	constructor(defaults?: string[]) {
 		if (defaults.length > 0) {
 			for ( let item of defaults ) {
-			  console.log(item);
 				switch(item) {
 					case "sonarcloud":
 						this.defaultSonarCloudConfiguration();

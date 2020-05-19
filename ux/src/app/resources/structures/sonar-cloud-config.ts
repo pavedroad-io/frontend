@@ -44,7 +44,7 @@ export class sonarCloudConfig {
 		this.options.goSec = new GoSec();
 		this.options.lint = new Lint();
 		this.options.vet = new Vet();
-		this.options.badges = new Array(20);
+		this.options.badges = new Array(0);
 		this.options.coverage.enable = true;
 		this.options.coverage.report = "artifacts/coverage.out";
 		this.options.goSec.enable = true;

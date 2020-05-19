@@ -1,8 +1,12 @@
+// used to import js-yaml
+declare var require: any;
+
 import { Component, OnInit, ElementRef, ViewChild, Output, Input } from '@angular/core';
 import { ServiceListService, IserviceResponse } from  '../../services/service-list.service';
 import { KafkaConfigComponent } from '../kafka-config/kafka-config.component';
 import { VariableTypesComponent } from '../variable-types/variable-types.component';
 import { TableComponent, Itable } from '../table/table.component';
+import { DefinitionFile } from '../../structures/definition-file'; 
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -10,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { CdkDragStart, CdkDragMove, CdkDragDrop, moveItemInArray, copyArrayItem } from '@angular/cdk/drag-drop';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-new-service-wizard',
@@ -19,7 +24,7 @@ import { CdkDragStart, CdkDragMove, CdkDragDrop, moveItemInArray, copyArrayItem 
 export class NewServiceWizardComponent implements OnInit {
 	@ViewChild(MatListModule, { read: ElementRef }) child: ElementRef;
 
-	// isLinear = false;
+	def: DefinitionFile = new DefinitionFile();
 
   serviceFG: FormGroup;
   orgFG: FormGroup;
@@ -125,4 +130,21 @@ export class NewServiceWizardComponent implements OnInit {
 
   }
 
+	yamldef(): string {
+
+		var YAML = require('js-yaml');
+		var ymlText;
+
+		ymlText = YAML.safeDump(this.def, {
+			'skipInvalid': true,
+			'lineWidth': 400,
+			'sortKeys': true
+		});
+		return ymlText
+	}
+
+	saveDef() {
+		var blob = new Blob([this.yamldef()], {type: "text/plain;charset=utf-8"});
+		saveAs(blob, "test.yaml");
+	}
 }

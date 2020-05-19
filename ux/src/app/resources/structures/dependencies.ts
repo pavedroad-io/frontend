@@ -22,14 +22,14 @@ export class Dependencies {
 		this.comments = "";
 		this.dockerKafka = "";
 		this.dockerCockroachDb = "";
-		this.ports = new Array<Ports>(1);
+		this.ports = new Array<Ports>(0);
 		let p: Ports = new Ports();
 		this.ports.push(p);
-		this.volumns = new Array(1);
+		this.volumns = new Array(0);
 		this.volumns.push("");
-		this.topics = new Array<Topic>(1);
+		this.topics = new Array<Topic>(0);
 		let t: Topic = new Topic();
 		this.topics.push(t);
-		this.environment = new Array(1);
+		this.environment = new Array(0);
 	}
 }

@@ -1,3 +1,5 @@
+declare var require: any;
+		
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Dependencies } from '../../structures/dependencies'; 
@@ -136,7 +138,7 @@ export class KafkaConfigComponent implements OnInit {
 	save() {
 		this.dialogRef.close(this.form.value);
 		//console.log(this.form.value);
-		console.log(this.def);
+		this.yamldef();
 	}
 
 	addEnvironmnet(type: string) {
@@ -244,4 +246,18 @@ export class KafkaConfigComponent implements OnInit {
 			}
 	}
 
+	yamldef(): string {
+
+		var YAML = require('js-yaml');
+		var ymlText;
+
+		ymlText = YAML.safeDump(this.def, {
+			'skipInvalid': true,
+			'lineWidth': 400,
+			'sortKeys': true
+		});
+		console.log(ymlText);
+		return ymlText
+
+	}
 }

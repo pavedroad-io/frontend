@@ -302,10 +302,43 @@
 
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
+		<form>
+		<div>
+			<span style="float: right;">
+ 	     <button mat-raised-button 
+				 (click)="saveDef()"
+				 color="primary">
+					<mat-icon>
+						cloud_download
+					</mat-icon>
+					Download
+				</button>
+			</span>
+		</div>
+		<h1>
+	    	Summary & Download
+		</h1>
+		<h2>
+				Service specifications for: test
+		</h2>
+
+		<div>
+		<mat-expansion-panel>
+		  <mat-expansion-panel-header>
+   			 <mat-panel-title>
+						<h3>View YAML</h3>
+			   </mat-panel-title>
+  	</mat-expansion-panel-header>
+			<pre>
+{{yamldef()}}
+			</pre>
+		</mat-expansion-panel>
+		</div>
+
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
+		</form>
   </mat-step>
 </mat-horizontal-stepper>
