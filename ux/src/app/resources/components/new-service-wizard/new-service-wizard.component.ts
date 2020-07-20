@@ -48,6 +48,7 @@ export class NewServiceWizardComponent implements OnInit {
 	// TODO: move to service
 	serviceTypes: any[] = [
 		{ value: "ms", displayName: "Microserivces", icon: "" },
+		{ value: "graph", displayName: "Network/Graph ", icon: "" },
 		{ value: "faas", displayName: "Function", icon: "" },
 		{ value: "crd", displayName: "CRD", icon: "" }
 	];

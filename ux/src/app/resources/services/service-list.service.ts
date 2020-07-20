@@ -26,9 +26,13 @@ export class ServiceListService {
 		{ id: "1", type: "ms", key: "datamgr", releaseStatus: "ga", version: "1.0.0alpha", description: "Data manager", enable: true },
 		{ id: "2", type: "ms", key: "workerPool", releaseStatus: "ga", version: "1.0.0alpha", description: "Worker pool", enable: true },
 		{ id: "3", type: "ms", key: "service", releaseStatus: "ga", version: "1.0.0alpha", description: "Service end point", enable: true },
-		{ id: "4", type: "crd", key: "CRD", releaseStatus: "ga", version: "1.0.0alpha", description: "Kubernetes CRD", enable: true },
-		{ id: "5", type: "faas", key: "open_faas", releaseStatus: "ga", version: "1.0.0alpha", description: "Open FaaS function", enable: true },
-		{ id: "6", type: "faas", key: "knative", releaseStatus: "ga", version: "1.0.0alpha", description: "Knative function", enable: true }
+		{ id: "4", type: "ms", key: "APIGateway", releaseStatus: "ga", version: "1.0.0alpha", description: "API Gateway", enable: true },
+		{ id: "5", type: "ms", key: "dataValidator", releaseStatus: "ga", version: "1.0.0alpha", description: "Data Validator", enable: true },
+		{ id: "6", type: "graph", key: "networkNode", releaseStatus: "ga", version: "1.0.0alpha", description: "Network Node", enable: true },
+		{ id: "7", type: "graph", key: "nodeRelationship", releaseStatus: "ga", version: "1.0.0alpha", description: "Node Relationship", enable: true },
+		{ id: "8", type: "crd", key: "CRD", releaseStatus: "ga", version: "1.0.0alpha", description: "Kubernetes CRD", enable: true },
+		{ id: "9", type: "faas", key: "open_faas", releaseStatus: "ga", version: "1.0.0alpha", description: "Open FaaS function", enable: true },
+		{ id: "10", type: "faas", key: "knative", releaseStatus: "ga", version: "1.0.0alpha", description: "Knative function", enable: true }
 	];
 
 	constructor(private http: HttpClient) { 
