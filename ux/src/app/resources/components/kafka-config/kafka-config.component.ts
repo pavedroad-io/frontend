@@ -9,7 +9,6 @@ import { SelectOptions } from '../../structures/select-options';
 import { DefinitionFile } from '../../structures/definition-file'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { deserialize, JsonProperty } from 'json-typescript-mapper';
 import { MatListModule } from '@angular/material/list';
 import { PortCRUDComponent } from '../port-crud/port-crud.component'; 
 import { NoItemsSelectedComponent } from '../no-items-selected/no-items-selected.component'; 

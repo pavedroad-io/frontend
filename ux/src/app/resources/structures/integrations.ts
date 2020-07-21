@@ -1,13 +1,11 @@
 import { Badges } from './badges';
 import { sonarCloudConfig } from './sonar-cloud-config';
-import { deserialize, JsonProperty } from 'json-typescript-mapper';
 
 export class Integrations {
 	// TODO: Move this to a Fossa configuration
 	badges: Array<Badges>;
 	name: string;
 	enable: boolean;
-	//@JsonProperty('sonar-cloud-config')
 	sonarCloudConfig: sonarCloudConfig;
 
 	constructor(defaults?: string[]) {

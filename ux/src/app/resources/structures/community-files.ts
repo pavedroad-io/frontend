@@ -1,4 +1,3 @@
-
 export class CommunityFiles {
 	name: string;
 	path: string;

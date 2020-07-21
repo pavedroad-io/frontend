@@ -32,7 +32,7 @@ import { FossaConfigComponent } from './components/fossa-config/fossa-config.com
 import { ScaConfigComponent } from './components/sca-config/sca-config.component';
 
 // 3rd Party modules
-import { deserialize, JsonProperty } from 'json-typescript-mapper';
+// import { deserialize, JsonProperty } from 'json-typescript-mapper';
 import { PortCRUDComponent } from './components/port-crud/port-crud.component';
 import { VolumnCRUDComponent } from './components/volumn-crud/volumn-crud.component';
 import { ExposedPortCRUDComponent } from './components/exposed-port-crud/exposed-port-crud.component';
