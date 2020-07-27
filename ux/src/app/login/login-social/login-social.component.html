@@ -1,0 +1,47 @@
+<div>
+	<img src="https://www.pavedroad.io/wp-content/uploads/2020/02/pavedroad_blue_418x66.png"
+	style="display:block; margin-top: 25px; margin-left:auto; margin-right: auto;">
+</div>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Select log in method</mat-card-title>
+    </mat-card-header>
+
+    <form class="login-form">
+      <mat-card-content>
+				<a id="bitbucker-button">
+					<button mat-raised-button class="login-button">
+						<i class="fa fa-bitbucket"></i>
+						BitBucket
+					</button>
+				</a>
+				<div></div>
+
+				<a routerLink="/github" id="github-button">
+					<button mat-raised-button color="primary">
+						<i class="fa fa-github"></i>
+						GitHub
+					</button>
+				</a>
+				<div></div>
+
+				<a id="google-button" >
+					<button mat-raised-button>
+						<i class="fa fa-google"></i>
+						Google GCP
+					</button>
+				</a>
+				<div></div>
+
+				<a id="ms-button" >
+					<button mat-raised-button>
+						<i class="fa fa-windows"></i>
+						Azure
+					</button>
+				</a>
+				<div></div>
+      </mat-card-content>
+    </form>
+  </mat-card>
+</div>

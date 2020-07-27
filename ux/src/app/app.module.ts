@@ -6,21 +6,33 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { CoreModule } from './core/core.module';
-//import { NavComponent } from './nav/nav.component';
-//import { LayoutModule } from '@angular/cdk/layout';
+import { ResourcesModule } from './resources/resources.module';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
-		//		NavComponent
+		AppComponent,
+		DashboardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
 		BrowserAnimationsModule,
-		CoreModule
-		//		LayoutModule
-  ],
+		CoreModule,
+		ResourcesModule,
+		MatGridListModule,
+		MatCardModule,
+		MatMenuModule,
+		MatIconModule,
+		MatButtonModule,
+		LayoutModule
+	],
   providers: [],
 	bootstrap: [AppComponent]
 })

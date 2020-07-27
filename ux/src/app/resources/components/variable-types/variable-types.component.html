@@ -1,0 +1,10 @@
+<mat-chip-list cdkDropList [cdkDropListConnectedTo]="['drop-list', 'table1']"
+	role="list"
+	class="drop-title">
+					
+	<mat-chip class="left" cdkDrag *ngFor="let type of types"
+		[cdkDragData]="type">
+    {{ type.key }}
+	</mat-chip>
+</mat-chip-list>
+

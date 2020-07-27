@@ -1,0 +1,7 @@
+col-viewport{
+  height: 70;
+}
+
+cdk-virtual-scroll-viewport {
+	height: 310px;
+}

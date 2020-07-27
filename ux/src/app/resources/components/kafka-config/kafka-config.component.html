@@ -1,0 +1,155 @@
+<h2 mat-dialog-title>{{description}}</h2>
+
+<mat-dialog-content [formGroup]="form">
+				<section class="example-section">
+					<mat-slide-toggle
+					formControlName="autoinit"
+					class="example-margin"
+					color="primary"
+					[checked]="prLogAutoInit">
+							Auto Initialize 
+					</mat-slide-toggle>
+				</section>
+
+				<section class="example-section">
+					<mat-form-field apperance="fill">
+				    <mat-label>Configuration from</mat-label>
+				    <mat-select [(value)]="selectedPrLogConfigTypeOption">
+				      <mat-option *ngFor="let type of prLogConfigTypeOptions"
+								[value]="type.name">
+				          {{ type.displayName }}
+				      </mat-option>
+				    </mat-select>
+					</mat-form-field>
+				</section>
+
+				<section class="example-section">
+						<mat-form-field apperance="fill">
+				    <mat-label>Log format</mat-label>
+				    <mat-select [(value)]="prLogFileType">
+				     <mat-option *ngFor="let type of prLogFileFormatOptions"
+								[value]="type.name">
+ 	    			     {{ type.displayName }}
+				      </mat-option>
+				    </mat-select>
+					</mat-form-field>
+				</section>
+
+				<div>
+					<mat-form-field appearance="fill" class="example-full-width">
+			   	 <mat-label>Log file location food</mat-label>
+			   	 <input matInput 
+						placeholder="log/name.log" 
+						[(value)]="prLogFileLocation">
+				  </mat-form-field>
+				</div>
+
+				<br/>
+				<div>
+					<mat-form-field appearance="fill" class="example-full-width">
+			 	   <mat-label>Kafka brokers</mat-label>
+			 	   <input matInput 
+						placeholder="kafka:9092" 
+						[(value)]="prKafkaBrokers">
+			 	 </mat-form-field>
+				</div>
+
+		<section class="example-section">
+			<h3 class="mat-h2 mat-subheading-2">Ports
+				<span style="float: right;">
+					<button mat-icon-button color="primary" (click)="addEnvironmnet('port')">
+						<mat-icon>add_box</mat-icon>
+					</button>
+					<button mat-icon-button color="accent" (click)="editEnvironmnet('port')">
+						<mat-icon>edit</mat-icon>
+					</button>
+					<button mat-icon-button color="warn" (click)="deleteEnvironmnet('port')">
+						<mat-icon>delete</mat-icon>
+					</button>
+				</span>
+			
+			</h3>
+			<div>
+			  Selected ports
+				{{ prSelectedPorts | json }}
+			</div>
+			<div style="border: solid; border-width: 1px; border-radius: 8px; color: #3f51b5;">
+			<mat-selection-list #ports 
+				class="form-control"
+				[(ngModel)]="prSelectedPorts"
+				[ngModelOptions]="{standalone: true}"
+				(ngModelChange)="portSelectionChange($event)">
+				<mat-list-option *ngFor="let port of prPorts"
+					[value]="port.id">
+					{{ port.external }} -> {{ port.internal }}
+				</mat-list-option>
+			</mat-selection-list>
+			</div>
+		</section>
+
+		<mat-divider></mat-divider>
+
+		<section class="example-section" style="margin-top: 10px;">
+			<h3 class="mat-h2 mat-subheading-2">Exposed
+				<span style="float: right;">
+					<button mat-icon-button color="primary" (click)="addEnvironmnet('expose')">
+						<mat-icon>add_box</mat-icon>
+					</button>
+					<button mat-icon-button color="accent" (click)="editEnvironmnet('expose')">
+						<mat-icon>edit</mat-icon>
+					</button>
+					<button mat-icon-button color="warn" (click)="deleteEnvironmnet('expose')">
+						<mat-icon>delete</mat-icon>
+					</button>
+				</span>
+			</h3>
+			<div style="border: solid; border-width: 1px; border-radius: 8px; color: #3f51b5;">
+			<mat-selection-list
+				class="form-control"
+				[(ngModel)]="prSelectedExposePorts"
+				[ngModelOptions]="{standalone: true}"
+				(ngModelChange)="portExposedSelectionChange($event)">
+				<mat-list-option *ngFor="let port of prExposePorts"
+					[value]=port>
+					{{ port }}
+				</mat-list-option>
+			</mat-selection-list>
+			</div>
+		</section>
+
+		<mat-divider></mat-divider>
+
+		<section class="example-section" style="margin-top: 10px;">
+			<h3 class="mat-h2 mat-subheading-2">Volumes
+				<span style="float: right;">
+					<button mat-icon-button color="primary" (click)="addEnvironmnet('volume')">
+						<mat-icon>add_box</mat-icon>
+					</button>
+					<button mat-icon-button color="accent" (click)="editEnvironmnet('volume')">
+						<mat-icon>edit</mat-icon>
+					</button>
+					<button mat-icon-button color="warn" (click)="deleteEnvironmnet('volume')">
+						<mat-icon>delete</mat-icon>
+					</button>
+				</span>
+			</h3>
+			<div style="border: solid; border-width: 1px; border-radius: 8px; color: #3f51b5;">
+			<mat-selection-list
+				class="form-control"
+				[(ngModel)]="prSelectedVolmns"
+				[ngModelOptions]="{standalone: true}"
+				(ngModelChange)="prVolumnsSelectionChange($event)">
+				<mat-list-option *ngFor="let vol of prVolumns"
+					[value]=vol>
+					{{ vol }}
+				</mat-list-option>
+			</mat-selection-list>
+			</div>
+		</section>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+</mat-dialog-actions>

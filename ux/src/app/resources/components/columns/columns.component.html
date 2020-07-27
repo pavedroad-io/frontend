@@ -1,0 +1,35 @@
+<div>
+  <form>
+  <mat-form-field appearance="fill">
+    <mat-label>Type</mat-label>
+	<input matInput readonly disabled [(value)]="col.coltype">
+  </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+	<input matInput [(value)]="col.name"
+	 placeholder="Name the new field"
+	 [readonly]="!col.editable"
+	 [disabled]="!col.editable">
+  </mat-form-field>
+  
+  <span>
+	<mat-checkbox 
+		class="checkbox"
+		*ngFor="let mod of modifiers"
+		[ngModel]="mod.checked" name="mod.name">
+	    {{ mod.displayName }}
+	</mat-checkbox>
+  </span>
+
+	<span *ngFor="let con of constraints">
+	<mat-checkbox  class="checkbox"
+		*ngIf="con.for == 'any' || con.for == col.coltype"
+		[ngModel]="con.checked" name="con.name">
+	    {{ con.displayName }}
+	</mat-checkbox>
+	</span>
+
+  </form>
+</div>
+
