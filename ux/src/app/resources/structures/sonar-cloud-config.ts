@@ -1,8 +1,12 @@
 import { ConfigurationFile } from './configuration-file';
-import { Badges } from './badges';
+
+export class ShieldOptions {
+	name: string;
+	description: string;
+}
 
 export class Options {
-	badges: Array<Badges>;
+	badges: Array<ShieldOptions>;
 	coverage: Coverage;
 	goSec: GoSec;
 	lint: Lint;
@@ -53,21 +57,11 @@ export class sonarCloudConfig {
 		this.options.lint.report = "artifacts/lint.out";
 		this.options.vet.enable = true;
 		this.options.vet.report = "artifacts/govet.out";
-		this.genBadges(this.key);
+		this.defaultShields();
 	}
 
-	genBadges(key: string){
-		let linkStart: string = '"<a href="https://sonarcloud.io/dashboard?id="';
-		let linkSecond: string = ' alt="SonarCloud Report"><img src="https://sonarcloud.io/api/project_badges/measure?project=';
-		let linkThird: string = '&metric=';
-		let linkEnd: string = '"></a>';
-
-		let types: Array<{
-			name: string;
-			description?: string;
-		}>;
-		
-		types = [
+	defaultShields(){
+		let types = [
 			{
 			name: 'alert_status',
 			description: 'Alert status'
@@ -99,12 +93,10 @@ export class sonarCloudConfig {
 		];
 
 		for (let item of types) {
-			let newBadge: Badges = new Badges();
-			newBadge.name = item.description;
-			newBadge.enable = true;
-			let url: string = linkStart+key+linkSecond+key+linkThird+item.name+linkEnd;
-			newBadge.link= url;
-			this.options.badges.push(newBadge);
+			let x: ShieldOptions;
+			x.name = item.name;
+			x.description = item.description
+			this.options.badges.push(x);
 		}
 
 	}
