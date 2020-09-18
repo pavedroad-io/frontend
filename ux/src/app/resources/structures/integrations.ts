@@ -3,7 +3,7 @@ import { sonarCloudConfig } from './sonar-cloud-config';
 
 export class Integrations {
 	// TODO: Move this to a Fossa configuration
-	badges: Array<Badges>;
+	badges: Array<string>;
 	name: string;
 	enable: boolean;
 	sonarCloudConfig: sonarCloudConfig;
@@ -18,6 +18,9 @@ export class Integrations {
 					case "fossa":
 						this.defaultFossaConfiguration();
 					break;
+					case "go":
+						this.defaultGoConfiguration();
+					break;
 					default:
 					console.log("Unkonwn integration: ", item);
 				}
@@ -28,15 +31,18 @@ export class Integrations {
 	defaultFossaConfiguration() {
 		this.name = "fossa";
 		this.enable = true;
-		this.badges = Array(1);
-		let fossaBadge = new Badges();
-		fossaBadge.name = "FOSSA";
-		fossaBadge.enable = true;
-		fossaBadge.link = '<a href="https://app.fossa.com/projects/custom%2B9819%2Ffilms?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/custom%2B9819%2Ffilms.svg?type=shield"/></a>';
-		this.badges.push(fossaBadge);
+		this.badges = Array(0);
+		this.badges.push("fossa");
 	}
 
 	defaultSonarCloudConfiguration() {
 		this.sonarCloudConfig = new sonarCloudConfig("app");
+	}
+
+	defaultGoConfiguration() {
+		this.name = "go";
+		this.enable = true;
+		this.badges = Array(0);
+		this.badges.push("goreport");
 	}
 }
